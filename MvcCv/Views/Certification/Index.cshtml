@@ -1,0 +1,70 @@
+﻿@using MvcCv.Models.Entity
+@model List<Tbl_Certifications>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h3>Sertifikalarım</h3>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="tab-pane" id="timeline">
+                                <!-- The timeline -->
+                                <div class="timeline timeline-inverse">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="time-label">
+                                            <span class="bg-info">
+                                                @item.Date
+                                            </span>
+                                        </div>
+                                        <!-- /.timeline-label -->
+                                        <!-- timeline item -->
+                                        <div>
+                                            <div class="timeline-item" style="height:70px">
+                                                <div class="timeline-body">
+                                                    @item.Description
+
+                                                    <div class="timeline-footer" style="text-align:right;">
+                                                        <a href="/Certification/EditCertification/@item.Id" class="btn btn-info btn-sm">
+                                                            <i class="nav-icon fas fa-edit"></i>
+                                                            Düzenle
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <a href="/Certification/AddCertification" class="btn btn-info">Yeni Sertifika Ekle</a>
+                            </div>
+                        </div>
+                    </div><!-- /.card-body -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success" id="successMessage">
+            @TempData["Message"]
+        </div>
+        <script>
+        setTimeout(function() {
+            document.getElementById("successMessage").style.display = "none";
+        }, 4000);</script>
+    }
+</body>
+</html>

@@ -1,0 +1,20 @@
+﻿@model MvcCv.Models.Entity.Tbl_Admin
+@{
+    ViewBag.Title = "EditAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h3>Admin Bilgi Güncelle</h3>
+<br />
+<form method="post" style="margin-left:20px; margin-right:50px">
+    @Html.Label("Kullanıcı Adı")
+    @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.UserName, "", new { @style = "color:red; font-size:15px" })
+    <br />
+    @Html.Label("Şifre")
+    @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Password, "", new { @style = "color:red; font-size:15px" })
+    <br />
+    <button class="btn btn-info">Güncelle</button>
+</form>
+

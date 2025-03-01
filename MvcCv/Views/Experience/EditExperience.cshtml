@@ -1,0 +1,25 @@
+﻿@model MvcCv.Models.Entity.Tbl_Experience
+@{
+    ViewBag.Title = "EditExperience";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h3>Deneyim Güncelle</h3>
+<br />
+<form method="post" style="margin-left:10px; margin-right:50px;">
+    @Html.Label("Firma Adı")
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    <br />
+    @Html.Label("Pozisyon")
+    @Html.TextBoxFor(x => x.Subtitle, new { @class = "form-control" })
+    <br />
+    @Html.Label("Tarih")
+    @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
+    <br />
+    @Html.Label("Açıklama")
+    @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+    <br />
+        <button class="btn btn-info">Güncelle</button>
+</form>
+

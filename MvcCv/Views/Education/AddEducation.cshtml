@@ -1,0 +1,34 @@
+﻿@model MvcCv.Models.Entity.Tbl_Education
+
+@{
+    ViewBag.Title = "AddEducation";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h3>Eğitim Bilgisi Ekle</h3>
+<br />
+<form method="post" style="margin-left:20px; margin-right:50px;">
+    @Html.Label("Okul")
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Title, "", new { @style = "color:red; font-size:15px" })
+    <br />
+    @Html.Label("Fakülte")
+    @Html.TextBoxFor(x => x.Subtitle1, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Subtitle1, "", new { @style = "color:red; font-size:15px" })
+    <br />
+    @Html.Label("Bölüm")
+    @Html.TextBoxFor(x => x.Subtitle2, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Subtitle2, "", new { @style = "color:red; font-size:15px" })
+    <br />
+    @Html.Label("Tarih")
+    @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Date, "", new { @style = "color:red; font-size:15px" })
+    <br />
+    @Html.Label("Genel Not Ortalaması (GNO)")
+    @Html.TextBoxFor(x => x.GPA, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.GPA, "", new { @style = "color:red; font-size:15px" })
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+</form>
+

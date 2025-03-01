@@ -1,0 +1,47 @@
+﻿@using MvcCv.Models.Entity
+@model List<Tbl_About>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h3>Hakkımda</h3>
+<br />
+<form method="post" style="margin-left:20px; margin-right:50px;">
+    @foreach (var item in Model)
+    {
+    <label>Ad</label>
+    <input type="text" name="Name" value="@item.Name" class="form-control" />
+    <br />
+    <label>Soyad</label>
+    <input type="text" name="Surname" value="@item.Surname" class="form-control" />
+    <br />
+    <label>Adres</label>
+    <input type="text" name="Address" value="@item.Address" class="form-control" />
+    <br />
+    <label>Telefon Numarası</label>
+    <input type="text" name="Phone" value="@item.Phone" class="form-control" />
+    <br />
+    <label>Mail</label>
+    <input type="text" name="Mail" value="@item.Mail" class="form-control" />
+    <br />
+    <label>Fotoğraf</label>
+    <input type="text" name="Photo" value="@item.Photo" class="form-control" />
+    <br />
+    <label>Açıklama</label>
+    <textarea rows="3" class="form-control" name="Description">@item.Description</textarea>
+    }
+    <br />
+    <button class="btn btn-info">Güncelle</button>
+</form>
+@if (TempData["Message"] != null)
+{
+<div class="alert alert-success" id="successMessage">
+    @TempData["Message"]
+</div>
+<script>
+        setTimeout(function() {
+            document.getElementById("successMessage").style.display = "none";
+        }, 4000); </script>
+}

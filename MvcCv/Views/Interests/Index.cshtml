@@ -1,0 +1,34 @@
+﻿@using MvcCv.Models.Entity
+@model List<Tbl_Interests>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h3>Hobilerim</h3>
+<br />
+<form method="post" style="margin-left:10px;margin-right:50px;">
+    @foreach (var item in Model)
+    {
+
+        <label>Açıklama 1</label>
+        <textarea rows="4" class="form-control" name="Description1">@item.Description1</textarea>
+        <br />
+        <label>Açıklama 2</label>
+        <textarea rows="4" class="form-control" name="Description2">@item.Description2</textarea>
+    }
+    <br />
+    <button class="btn btn-info">Güncelle</button>
+</form>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success" id="successMessage">
+        @TempData["Message"]
+    </div>
+
+    <script>
+        setTimeout(function () {
+            document.getElementById("successMessage").style.display = "none";
+        }, 4000); </script>
+}

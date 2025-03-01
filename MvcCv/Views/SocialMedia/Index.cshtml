@@ -1,0 +1,110 @@
+﻿@using MvcCv.Models.Entity
+@model List<Tbl_SocialMedia>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h3>Sosyal Medya Hesap Listesi</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Sosyal Medya Adı</th>
+                                            <th>Link</th>
+                                            <th style="width:40px">Durum</th>
+                                             <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.Id</td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Link</td>
+                                                <td style="text-align:center">
+                                                    @if (item.Status.HasValue && item.Status.Value)
+                                                    {
+                                                        @:<i class="nav-icon fas fa-solid fa-toggle-on" style="color: green; font-size: 20px;"></i> Aktif
+
+                                                    }
+                                                    else
+                                                    {
+                                                        @:<i class="nav-icon fas fa-solid fa-toggle-off" style="color: red; font-size: 20px;"></i> Pasif
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-info btn-sm" href="/SocialMedia/EditSocialMedia/@item.Id">
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Düzenle
+                                                    </a>
+                                                    <a class="btn btn-danger btn-sm" href="/SocialMedia/DeleteSocialMedia/@item.Id" style="margin-left:10px">
+                                                        <i class="fas fa-trash">
+                                                        </i>
+                                                        Sil
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <br />
+                                <buton class="btn btn-info" data-toggle="modal" data-target="#Modal1">
+                                    Yeni Sosyal Medya Hesabı Ekle
+                                </buton>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+
+        <div class="modal" id="Modal1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Sosyal Medya Hesabı Ekle</h3>
+                    </div>
+                    <form method="post" action="/SocialMedia/AddSocialMedia">
+                        <div class="modal-body">
+                            <label>Sosyal Medya İsmi</label>
+                            <input type="text" name="Name" class="form-control" />
+                            <br />
+                            <label>Sosyal Medya Linki</label>
+                            <input type="text" name="Link" class="form-control" />
+                            <br />
+                            <label>Sosyal Medya Ikon</label>
+                            <input type="text" name="Icon" class="form-control" />
+                            <br />
+                            <button class="btn btn-info">Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

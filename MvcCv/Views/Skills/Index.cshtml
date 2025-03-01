@@ -1,0 +1,110 @@
+﻿@using MvcCv.Models.Entity
+@model List<Tbl_Skills>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{string color = ""; }
+@{string Labelcolor = ""; }
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h3>Yeteneklerim</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th style="width: 200px">Yetenek</th>
+                                            <th style="width: 400px">Derece</th>
+                                            <th style="width: 50px">Oran</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.Level >= 0 && item.Level <= 50)
+                                            {
+                                                color = "progress-bar bg-danger";
+                                                Labelcolor = "badge bg-danger";
+                                            }
+                                            if (item.Level >= 51 && item.Level <= 70)
+                                            {
+                                                color = "progress-bar bg-warning";
+                                                Labelcolor = "badge bg-warning";
+                                            }
+                                            if (item.Level >= 71 && item.Level <= 84)
+                                            {
+                                                color = "progress-bar bg-primary";
+                                                Labelcolor = "badge bg-primary";
+                                            }
+                                            if (item.Level >= 85 && item.Level <= 100)
+                                            {
+                                                color = "progress-bar bg-success";
+                                                Labelcolor = "badge bg-success";
+                                            }
+                                        <tr>
+                                            <td>@item.Id</td>
+                                            <td>@item.Description</td>
+                                            <td>
+                                                <div class="progress progress-xs mt-2">
+                                                    <div class="@color" style="width: @item.Level%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="@Labelcolor">@item.Level%</span></td>
+
+                                            <td style="width:200px">
+                                                <a class="btn btn-info btn-sm ml-4" href="/Skills/EditSkills/@item.Id">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Düzenle
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="/Skills/DeleteSkills/@item.Id" style="margin-left:15px;">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Sil
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <br />
+                                <a href="/Skills/AddSkills/" class="btn btn-info">Yeni Yetenek Ekle</a>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+
+    @if (TempData["Message"] != null)
+    {
+    <div class="alert alert-success" id="successMessage">
+        @TempData["Message"]
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.getElementById("successMessage").style.display = "none";
+        }, 4000); </script>
+    }
+</body>
+</html>
+

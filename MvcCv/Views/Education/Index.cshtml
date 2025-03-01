@@ -1,0 +1,56 @@
+﻿@using MvcCv.Models.Entity
+@model List<Tbl_Education>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h3>Eğitim Bilgilerim</h3>
+<table class="table table-bordered">
+    <tr>
+        <th style="width: 10px">Id</th>
+        <th>Okul</th>
+        <th>Fakülte</th>
+        <th>Bölüm</th>
+        <th>Tarih</th>
+        <th>GNO</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.Id</td>
+        <td>@item.Title</td>
+        <td>@item.Subtitle1</td>
+        <td>@item.Subtitle2</td>
+        <td>@item.Date</td>
+        <td>@item.GPA</td>
+        <td>
+            <a class="btn btn-info btn-sm" href="/Education/EditEducation/@item.Id">
+                <i class="fas fa-pencil-alt">
+                </i>
+                Düzenle
+            </a>
+            <a class="btn btn-danger btn-sm" href="/Education/DeleteEducation/@item.Id" style="margin-left:10px">
+                <i class="fas fa-trash">
+                </i>
+                Sil
+            </a>
+        </td>
+    </tr>
+    }
+</table>
+<a href="/Education/AddEducation/" class="btn btn-info">Yeni Eğitim Bilgisi Ekle</a>
+
+@if (TempData["Message"] != null)
+{
+<div class="alert alert-success" id="successMessage">
+    @TempData["Message"]
+</div>
+
+<script>
+        setTimeout(function() {
+            document.getElementById("successMessage").style.display = "none";
+        }, 4000); </script>
+}

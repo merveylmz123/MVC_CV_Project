@@ -1,0 +1,21 @@
+﻿@model MvcCv.Models.Entity.Tbl_Skills
+
+@{
+    ViewBag.Title = "AddSkills";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h3>Yetenek Ekle</h3>
+<br />
+<form method="post" style="margin-left:20px; margin-right:50px">
+    @Html.Label("Yetenek Açıklaması")
+    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Description, "", new { @style = "color:red; font-size:15px" })
+    <br />
+    @Html.Label("Derece")
+    @Html.TextBoxFor(x => x.Level, new { @class = "form-control" })
+    <br />
+        <button class="btn btn-info">Kaydet</button>
+</form>
+
